@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho de UX</title>
+    <style>
+        html, body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: gray;
+        }
+
+        .cabecalho input[type="text"] {
+            font-size: 20px;
+            padding: 8px;
+            border: 4px solid #1eb3d8;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .conteiner {
+            text-align: center;
+            border: 10px solid blue;
+            padding: 20px;
+            background-color: #bcc5c7;
+        }
+
+        .container-button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .container-button input[type="button"]:focus {
+            border: 3px solid black;
+        }
+
+        .container-button input[type="button"] {
+            background-color: #4CAF50;
+            border: 2px solid rgb(26, 143, 26);
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .btn-limpar {
+            background-color: #ff4c4c;
+            border: 2px solid #ff0000;
+            color: white;
+            padding: 12px 24px;
+            margin-left: 0px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .btn-limpar:focus {
+    border: 3px solid black;
+}
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin-right: 15px;
+            text-align: right;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conteiner">
+        <form onsubmit="return false;">
+            <div class="cabecalho">
+                <h1>TABUADA DAS 4 OPERAÇÕES</h1>
+                <h2>
+                    Número 01: <input type="text" id="n1" placeholder="Digite o primeiro número" />
+                </h2>
+                 
+                <h2>
+                    Número 02: <input type="text" id="n2" placeholder="Digite o segundo número" />
+                </h2>
+
+                <input type="button" value="Limpar Dados" class="btn-limpar"  onclick="limparCampos()" />
+                <br />
+            </div>
+
+            <div class="container-button">
+                <input type="button" value="Adição" onclick="tabuada('soma')" />
+                <input type="button" value="Subtração" onclick="tabuada('subtracao')" />
+                <input type="button" value="Multiplicação" onclick="tabuada('multiplicacao')" />
+                <input type="button" value="Divisão" onclick="tabuada('divisao')" />
+            </div>
+
+            <h1 id="resultado">O resultado é: </h1>
+        </form>
+    </div>
+
+    <div class="footer">
+        <footer>Desenvolvido por @AlanDias & Carlivan</footer>
+    </div>
+
+    <script>
+        function tabuada(op) {
+            const n1 = parseFloat(document.getElementById('n1').value);
+            const n2 = parseFloat(document.getElementById('n2').value);
+            let resultado;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                resultado = "Por favor, insira dois números válidos.";
+            } else {
+                switch (op) {
+                    case 'soma':
+                        resultado = n1 + n2;
+                        break;
+                    case 'subtracao':
+                        resultado = n1 - n2;
+                        break;
+                    case 'multiplicacao':
+                        resultado = n1 * n2;
+                        break;
+                    case 'divisao':
+                        resultado = n2 === 0 ? "Não é possível dividir por zero." : n1 / n2;
+                        break;
+                    default:
+                        resultado = "Operação inválida.";
+                }
+            }
+            document.getElementById('resultado').innerHTML = "O resultado é: " + resultado;
+        }
+
+        // Função para limpar os campos
+        function limparCampos() {
+            document.getElementById('n1').value = '';
+            document.getElementById('n2').value = '';
+            document.getElementById('resultado').innerHTML = "O resultado é: ";
+        }
+    </script>
+</body>
+
+</html>
